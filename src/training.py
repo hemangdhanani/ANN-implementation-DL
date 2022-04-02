@@ -12,10 +12,16 @@ def training(config_path):
 
     optimizer_val = config["params"]["optimizer"]
     loss_func = config["params"]["loss_function"]
-    matrics_method = config["params"]["accuracy"]
-    num_classes = config["params"]["num_classes"]
+    matrics_method = config["params"]["metrics"]
+    num_classes = config["params"]["num_classes"]    
 
     model = create_model(optimizer_val, loss_func, matrics_method, num_classes)
+
+    EPOCHS = config["params"]["epochs"]
+    Validation = (X_cv, y_cv)
+    history = model.fit(X_train, y_train,epochs=EPOCHS, validation_data=Validation)
+
+
 
     # print(config)
 
